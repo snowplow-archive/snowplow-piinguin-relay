@@ -1,0 +1,83 @@
+shared_deployment_options: &shared
+  access_key_id: "$AWS_KEY"
+  secret_access_key: "$AWS_SECRET"
+  skip_cleanup: true
+  local_dir: target/scala-2.12/assembled_jars
+  upload_dir: relays/piinguin
+  on:
+    tags: true
+
+language: scala
+scala:
+  - 2.12.6
+jdk:
+  - oraclejdk8
+before_deploy: 
+  - >
+    if ! [ "$BEFORE_DEPLOY_RUN" ]; then
+      export BEFORE_DEPLOY_RUN=1;
+      sbt assembly;
+    fi
+  
+deploy:
+  - provider: s3
+    bucket  : "snowplow-hosted-assets"
+    region  : "eu-west-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-us-east-1"
+    region  : "us-east-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-us-west-1"
+    region  : "us-west-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-us-west-2"
+    region  : "us-west-2"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-sa-east-1"
+    region  : "sa-east-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-eu-central-1"
+    region  : "eu-central-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-ap-southeast-1"
+    region  : "ap-southeast-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-ap-southeast-2"
+    region  : "ap-southeast-2"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-ap-northeast-1"
+    region  : "ap-northeast-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-ap-south-1"
+    region  : "ap-south-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-us-east-2"
+    region  : "us-east-2"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-ca-central-1"
+    region  : "ca-central-1"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-eu-west-2"
+    region  : "eu-west-2"
+    <<      : *shared
+  - provider: s3
+    bucket  : "snowplow-hosted-assets-ap-northeast-2"
+    region  : "ap-northeast-2"
+    <<      : *shared
+
+env:
+  global:
+  - secure: "$AWS_KEY=verysecret"
+  - secure: "$AWS_SECRET=verysecret"

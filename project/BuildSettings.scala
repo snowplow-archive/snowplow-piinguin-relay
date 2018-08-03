@@ -33,7 +33,7 @@ object BuildSettings {
   )
 
   lazy val basicSettings = Seq(
-    version := "0.1.0",
+    version := "0.1.0-rc1",
     organization := "com.snowplowanalytics",
     scalaVersion := "2.12.6",
     name := "snowplow-piinguin-relay"

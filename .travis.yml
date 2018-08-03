@@ -1,6 +1,6 @@
 shared_deployment_options: &shared
-  access_key_id: "$AWS_KEY"
-  secret_access_key: "$AWS_SECRET"
+  access_key_id: "$AWS_DEPLOY_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_DEPLOY_SECRET_ACCESS_KEY"
   skip_cleanup: true
   local_dir: target/scala-2.12/assembled_jars
   upload_dir: relays/piinguin
@@ -19,6 +19,7 @@ before_deploy:
       sbt assembly;
     fi
   
+
 deploy:
   - provider: s3
     bucket  : "snowplow-hosted-assets"
@@ -79,5 +80,5 @@ deploy:
 
 env:
   global:
-  - secure: "$AWS_KEY=verysecret"
-  - secure: "$AWS_SECRET=verysecret"
+  - secure: KwOPmSSHOYsBVMMBH6Zy9mRLOseosblfhDb8RdghAWplHitK5jpwEYpafuEtjvgqRWOWzDgkTmq9pPWWNgkMbPQYIZTfQFMxl/4+OyWeDGhz8HTz7uy67ih56xQIC7SuT6cROWiTzHjKw6Ydd6gAbJUd5pK2RgzMixahRZQedUU8iQx3cDKt70ywF7QbFNhbwQELg5/G5RmhoJPeFVkB+nGb5US003RXqRfIj+3yWHIA5iXH56TwQi0lpkTLC83VuxfLAjs5LiAS/ELCdbD43ayeqIi2n53p3Y/HbEs58UeD2xcumNrCyZcV2QqUbfibkYQlbcMmfdR67Q2+CAmTBq9yEECo2hJqO7Bwvq4fA4emKNVrPkYuJbv2YCffnkHCnRC+M6rlxS/Pcvbk6qZv8oCwKVS/+64RgRcuhKMAWlXwVH3/cchtfUgTmLJ7JYSa3QCr+y3swlVvRqIruokKywjWXh8Jj5k6jmMfSc8OROUuQe9elsbu+XgpFkHGXrxQa567W8WmAdc1NGvdUPAu5DHbt59iHyd3nXysjkir+C3AMRBWq+09pn7lPhl8auZyjQCRLab3HQT2iHU2FyO/TvFB7p4F52HifbGEs+qu1iePoDuEQiyW8Es6SslO9Dro6sib32uSR/cJv9w7Q6jve4iMDzAGRunVMLsj30Beliw=
+  - secure: lZLQdqfTC/bi5dzj9D1GHAz+B3WAN23j4d70iwpnZGbla0IYMrCKPnohDgN2cNZH9grPe3p7UIXKDA1o/bNEEygjOwiCFugdM25x7ElsCusun4/UQmEGNuCZyPqCJjA3hbZUZnJCB3cwmkyQA2/5oWZm/I2MRV1axXJfSELUrmpuOH7DwDKuJLlrsTZ80ogcFiDCpwEEUtxZLG5dAhZ5nPlX2Abe4k3e4K3AaoO3nFxcXLjdPgg3n796QWT7olwYZ/tSUv7YRys+kpaLdp04nTYZlEG79aNId84NjVXNoNoxWstqI1tiYGmbNrMNIeUGhUvNgyO37MvaXWkcxW04RLPCA3T+JJ0V605l+UoTQ+QRvLMhKX++KIMiyjdxSkJq+64v1GKex+hnkMxpjsSTPugIoJ5/RT49XyfrW88S4qwt+9Eb6IcmCVzQIHymhQAGvZiJFOJAK7m4d6RoWEtjcqBeKZoUMNGl1rXk4XQ5OzzCjj48Ku5hn0mkwow+IgaQacMqc1jIeu4Phy3JGptQln+HObJJ1BLdxfeaOTgtXzDr1sDpz0SiB0gfmly2yguViDpuV239FQp2KWD8iXRRui1y22Oeuzy4ACTUovAhF5BTHw9evTzPs65nph7UPVPIWUY6ZIkdsigdO6FF80uhPxq3xRB4kB04P3yo8rp3eZY=
